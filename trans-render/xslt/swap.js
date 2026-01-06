@@ -1,0 +1,16 @@
+//TODO:  use :empty selector https://bsky.app/profile/konnorrogers.com/post/3lclacapbnc2x
+const tagsToSwap = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
+const tagsToRemove = ['script', 'noscript']; //TODO
+export function swap(target, toIsh) {
+    const qry = toIsh ? tagsToSwap.join(',') : tagsToSwap.join('-ish,');
+    const problemTags = target.querySelectorAll(qry);
+    problemTags.forEach(tag => {
+        const newTagName = toIsh ? tag.localName + '-ish' : tag.localName.substring(0, tag.localName.length - 4);
+        const newTag = document.createElement(newTagName);
+        for (let i = 0, ii = tag.attributes.length; i < ii; i++) {
+            newTag.setAttribute(tag.attributes[i].name, tag.attributes[i].value);
+        }
+        tag.insertAdjacentElement('afterend', newTag);
+    });
+    problemTags.forEach(tag => tag.remove());
+}

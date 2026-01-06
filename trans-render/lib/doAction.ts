@@ -1,0 +1,44 @@
+import {INotify, IValFromEventInstructions} from './types';
+
+export async function doAction(self: Element, recipientElement: Element, notify: INotify, event?: Event){
+    const { as, prop, fn, toggleProp, plusEq, withArgs, dispatch} = notify;
+    let {val} = notify;
+    if(val === undefined){
+        const {getValFromEvent} = await import('./getValFromEvent.js');
+        val = await getValFromEvent(self, notify as IValFromEventInstructions, event);
+    }
+    if(as !== undefined){
+        switch(as){
+            case 'str-attr':
+                recipientElement.setAttribute(prop!, val.toString());
+                break;
+            case 'obj-attr':
+                recipientElement.setAttribute(prop!, JSON.stringify(val));
+                break;
+            case 'bool-attr':
+                if(val) {
+                    recipientElement.setAttribute(prop!, '');
+                }else{
+                    recipientElement.removeAttribute(prop!);
+                }
+                break;                
+        }
+    }else{
+        if(prop !== undefined){
+            const {doSet} = await import ('./doSet.js');
+            doSet(recipientElement, prop, val, plusEq, toggleProp)
+        }
+        if(fn !== undefined){
+            const {doInvoke} = await import ('./doInvoke.js');
+            doInvoke(recipientElement, fn, val, withArgs, event);
+        }
+        if(dispatch !== undefined){
+            recipientElement.dispatchEvent(new CustomEvent(dispatch, {
+                detail:{
+                    val,
+                }
+            }));
+        }
+        
+    }
+}

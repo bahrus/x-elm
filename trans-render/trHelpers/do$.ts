@@ -1,0 +1,53 @@
+import {Transformer, MountOrchestrator, arr0} from '../Transform.js';
+import {QuenitOfWork, ScopeInstructions} from '../ts-refs/trans-render/types.js';
+import {Scope} from '../froop/Scope.js';
+
+
+export async function do$<TProps extends {}, TMethods = TProps, TElement = {}>(
+    transformer: Transformer<TProps, TMethods, TElement>,
+    matchingElement: Element,
+    scopingInstructions: ScopeInstructions,
+    uow: QuenitOfWork<TProps, TMethods, TElement>
+){
+    const {name, config} = scopingInstructions;
+    console.log('do$');
+
+    if(config !== null){
+        class s extends Scope {
+            static config = config;
+        }
+        s.bootUp();
+        const {regIsh} = await import('../mount-observer/refid/regIsh.js');
+        const {target} = transformer;
+        regIsh(target as Element, name, s);
+        const {Newish} = await import('../mount-observer/Newish.js');
+        const {assignGingerly} = await import('../lib/assignGingerly.js');
+                const {model} = transformer as {model: any};
+        const {o} = uow as {o: string[]}; //TODO, less of a hack
+        const prop = o[0];
+        const val = model[prop];
+        if(val instanceof s) return;
+        const n = new Newish(matchingElement, matchingElement, name, {
+            ctr: s,
+            assigner: assignGingerly,
+            csr: true,
+            initPropVals: val,
+        });
+        const ce = await n.do();
+        if(!Array.isArray(val)){
+            model[prop] = ce;
+            
+        }else{
+            const {modelSym} = await import('./Clone$.js');
+            (<any>ce)[modelSym] = model; //TODO use symbol
+            //debugger;
+            //model[prop] = Array.from(ce);
+        }
+        
+        //should this be done before the ish event is raised in Newish.#assignGingerly?
+        matchingElement.setAttribute('itemscope', name);
+
+    }
+
+
+}
