@@ -21,6 +21,7 @@
     "spa-ssi": "0.0.26"
   },
   "scripts": {
+    "inline-packages": "node buildUtils/packageInliner.js",
     "test": "playwright test",
     "serve": "node ./node_modules/spa-ssi/serve.js",
     "safari": "npx playwright wk http://localhost:8000",
