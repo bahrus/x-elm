@@ -10,11 +10,25 @@
     "type": "git",
     "url": "git+https://github.com/bahrus/x-elm.git"
   },
+  "dependencies": {
+    "be-enhanced": "0.0.189",
+    "be-hive": "0.0.268",
+    "mount-observer": "0.0.112",
+    "trans-render": "0.0.961"
+  },
+    "devDependencies": {
+    "@playwright/test": "1.57.0",
+    "spa-ssi": "0.0.26"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "serve": "node ./node_modules/spa-ssi/serve.js",
+    "safari": "npx playwright wk http://localhost:8000",
+    "update": "ncu -u && npm install"
+  },
   "license": "MIT",
   "author": "Bruce B. Anderson <anerson.bruce.b@gmail.com>",
   "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "test": "playwright test"
-  }
+  "main": "index.js"
+
 }
