@@ -47,6 +47,10 @@ function copyFiles(sourceDir, targetDir, packageName) {
     const stat = fs.statSync(sourcePath);
 
     if (stat.isDirectory()) {
+      // Skip ts-refs folders
+      if (file === 'ts-refs') {
+        return;
+      }
       // Recursively process subdirectories
       if (!fs.existsSync(targetPath)) {
         fs.mkdirSync(targetPath, { recursive: true });
