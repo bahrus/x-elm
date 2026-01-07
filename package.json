@@ -13,10 +13,11 @@
   "dependencies": {
     "be-enhanced": "0.0.189",
     "be-hive": "0.0.268",
+    "blow-dry": "0.0.15",
     "mount-observer": "0.0.112",
     "trans-render": "0.0.961"
   },
-    "devDependencies": {
+  "devDependencies": {
     "@playwright/test": "1.57.0",
     "spa-ssi": "0.0.26"
   },
