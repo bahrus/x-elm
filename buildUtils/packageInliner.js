@@ -24,9 +24,10 @@ Object.keys(dependencies).forEach(packageName => {
   }
 
   // Create target folder if it doesn't exist
-  if (!fs.existsSync(targetDir)) {
-    fs.mkdirSync(targetDir, { recursive: true });
+  if (fs.existsSync(targetDir)) {
+    fs.rmSync(targetDir, { recursive: true, force: true });
   }
+  fs.mkdirSync(targetDir, { recursive: true });
 
   // Recursively copy .js and .ts files
   copyFiles(packageDir, targetDir, packageName);
