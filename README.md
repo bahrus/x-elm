@@ -22,7 +22,7 @@ Defining a custom element with x-elm:
 
 Done!
 
-The detective emoji (🕵🏻) means "infer props based on the itemprop attributes outside any nested itemscope attributes.  Because the isHappy itemprop is in a data element with value=false, the property name is inferred to be boolean.  The attribute corresponding to the property name is inferred by applying a snake-case based on capital letters.
+The detective emoji (🕵🏻) attribute means "infer props based on the itemprop attributes outside any nested itemscope attributes.  Because the isHappy itemprop is in a data element with value=false, the property name is inferred to be boolean.  The attribute corresponding to the property name is inferred by applying a snake-case based on capital letters.
 
 The telescope emoji 🔭 is discussed in detail [here](https://github.com/bahrus/be-observing).
 
