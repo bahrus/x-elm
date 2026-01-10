@@ -1,4 +1,4 @@
-# x-elm
+# x-elm Introduction
 
 Defining a custom element with x-elm:
 
@@ -26,5 +26,5 @@ The detective emoji (🕵🏻) attribute means "infer props based on the itempro
 
 The telescope emoji 🔭 is discussed in detail [here](https://github.com/bahrus/be-observing).
 
-*x-elm* also supports the ability to specify properties with less guesswork, and a whole lot more.
+*x-elm* also supports the ability to specify properties with less guesswork, [and a whole lot more]().
 
